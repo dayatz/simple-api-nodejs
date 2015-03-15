@@ -50,6 +50,15 @@ router.route('/monsters/:name')
                 res.json({ status: 'updated'  });
             });
         });
-    });
+    })
+
+    .delete(function(req, res){
+        Monster.remove({ name: req.params.name }, function(err, monster){
+            if (err) {
+                res.json({ status: err  });
+            }
+            res.json({ status: 'deleted' });
+        });
+    })
 
 module.exports = router
